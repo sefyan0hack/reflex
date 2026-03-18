@@ -5,7 +5,19 @@ module;
 #include <functional>
 #include <stdexcept>
 #include <string>
-#include <unistd.h>
+
+#ifdef _WIN32
+  #include <io.h>
+  #include <fcntl.h>
+  #define pipe(fds)   _pipe(fds, 512, _O_BINARY)
+  #define dup(fd)     _dup(fd)
+  #define dup2(fd1,fd2) _dup2(fd1,fd2)
+  #define read(fd,buf,size) _read(fd,buf,size)
+  #define close(fd)   _close(fd)
+  #define fileno(stream) _fileno(stream)
+#else
+  #include <unistd.h>
+#endif
 
 export module reflex.testutils:pipe_capture;
 
