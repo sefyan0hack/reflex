@@ -1,8 +1,7 @@
 export module reflex.serde.json;
 
-export import reflex.serde;
-
 export import :value;
+export import reflex.serde;
 
 import std;
 
