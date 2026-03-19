@@ -23,6 +23,7 @@ target_sources(reflex-cli-test.git
 
 add_executable(fake-git fake-git.cpp)
 target_link_libraries(fake-git PRIVATE reflex-cli-test.git)
+target_link_libraries(fake-git PRIVATE stdc++exp) # for c++23 std::print in windows
 
 doctest_add_test(reflex-cli-test-git
   test-git.cpp
